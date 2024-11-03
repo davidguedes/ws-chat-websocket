@@ -26,7 +26,23 @@ io.on('connection', (socket) => {
         console.log('Mensagem recebida do cliente: ', dataMessage.user);
 
         // Broadcast da mensagem para todos os clientes conectados
-        io.emmit('message', {msg: dataMessage.message, user: dataMessage.user, user_id: dataMessage.user_id});
+        io.emit('message', {msg: dataMessage.message, user: dataMessage.user, user_id: dataMessage.user_id});
+    });
+
+    // Receber mensagem do cliente
+    socket.on('new_user_name', (name) => {
+        console.log('Novo cliente: ', name);
+
+        // Broadcast do novo usuário para todos os clientes conectados
+        io.emmit('new_user_name', {user: name});
+    });
+
+    // Troca de mensagens para um cliente em especifico
+    socket.on('private_message', (dataMessage) => {
+        console.log('Mensagem recebida do cliente: ', dataMessage);
+
+        // Broadcast da mensagem para todos os clientes conectados
+        io.to(dataMessage.to).emit('message', {msg: dataMessage.privateMessage, user: dataMessage.user, user_id: dataMessage.user_id, private: true});
     });
 
     // Lidar com a desconexão do cliente
