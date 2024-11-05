@@ -55,8 +55,8 @@ io.on('connection', (socket) => {
     });
 
     // Lidar com a desconexão do cliente
-    socket.on('disconnect', () => {
-        console.log(`Cliente desconectado!`);
+    socket.on('disconnect', (motivo) => {
+        console.log(`Cliente desconectado! `, motivo);
     })
 })
 
