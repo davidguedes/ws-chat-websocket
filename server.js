@@ -15,7 +15,8 @@ const io = new Server(server, {
 
 app.use(cors({ 
     origin: '*',
-    methods: ['GET', 'POST']
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
  }));
 
 app.get('/', (req, res) => {
