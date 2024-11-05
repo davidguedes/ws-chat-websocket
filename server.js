@@ -6,17 +6,20 @@ const PORT = 3000;
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-    cors: { 
-        origin: 'https://chat-websocket-angular.vercel.app',
-        methods: ['GET', 'POST'], allowedHeaders: ['Content-Type', 'Authorization'
-    }
-})
 
 app.use(cors({ 
     origin: 'https://chat-websocket-angular.vercel.app',
-    methods: ['GET', 'POST'], allowedHeaders: ['Content-Type', 'Authorization']
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
  }));
+
+const io = new Server(server, {
+    cors: { 
+        origin: 'https://chat-websocket-angular.vercel.app',
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+    }
+})
 
 app.get('/', (req, res) => {
     res.send('Servidor funcionando!');
