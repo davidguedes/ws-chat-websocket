@@ -9,18 +9,19 @@ const allowedOrigins = ['https://chat-websocket-angular.vercel.app', 'http://loc
 const app = express();
 const server = http.createServer(app);
 
-app.use(
+/*app.use(
     cors({
-    origin: allowedOrigins,
-    methods: ['GET', 'POST'],
-    credentials: true,
+        origin: allowedOrigins,
+        methods: ['GET', 'POST'],
+        credentials: true,
     })
-);
+);*/
 
 const io = socketIo(server, {
     cors: { 
         origin: allowedOrigins,
         methods: ['GET', 'POST'],
+        allowedHeaders: ['Access-Control-Allow-Origin'],
         credentials: true,
     },
 })
