@@ -7,20 +7,14 @@ const app = express();
 const server = http.createServer(app);
 const { Server } = require ('socket.io');
 
-app.use(cors({ 
-    origin: '*',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization']
- }));
-
 const io = new Server(server, {
     cors: { 
         origin: '*',
-        methods: ['GET', 'POST'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
-        withCredentials: true
+        methods: ['GET', 'POST']
     },
 })
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Servidor funcionando!');
