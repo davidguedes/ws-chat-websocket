@@ -14,10 +14,10 @@ app.use(cors({
 
 const io = require('socket.io')(server, {
     cors: { 
-        origin: '*',
-        methods: ['GET', 'POST']
-    },
-    transports: ['websocket']
+        origin: 'https://chat-websocket-angular.vercel.app',
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+    }
 })
 
 app.get('/', (req, res) => {
