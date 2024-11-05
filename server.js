@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(cors({ 
-    origin: '*',
+    origin: 'https://chat-websocket-angular.vercel.app',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization']
  }));
@@ -16,7 +16,8 @@ const io = require('socket.io')(server, {
     cors: { 
         origin: '*',
         methods: ['GET', 'POST']
-    }
+    },
+    transports: ['websocket']
 })
 
 app.get('/', (req, res) => {
