@@ -7,10 +7,16 @@ const PORT = 3000;
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-    cors: { origin: '*' }
+    cors: { 
+        origin: '*',
+        methods: ['GET', 'POST']
+    }
 })
 
-app.use(cors({ origin: '*' }));
+app.use(cors({ 
+    origin: '*',
+    methods: ['GET', 'POST']
+ }));
 
 app.get('/', (req, res) => {
     res.send('Servidor funcionando!');
@@ -19,7 +25,7 @@ app.get('/', (req, res) => {
 // Quando um cliente se conecta
 io.on('connection', (socket) => {
 
-    io.emmit('new_user', {id: socket.id});
+    io.emit('new_user', {id: socket.id});
 
     // Receber mensagem do cliente
     socket.on('message', (dataMessage) => {
