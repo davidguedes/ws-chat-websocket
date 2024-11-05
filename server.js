@@ -8,18 +8,17 @@ const server = http.createServer(app);
 const { Server } = require ('socket.io');
 
 app.use(cors({ 
-    origin: 'https://chat-websocket-angular.vercel.app',
+    origin: '*',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization']
  }));
 
 const io = new Server(server, {
     cors: { 
-        origin: 'https://chat-websocket-angular.vercel.app',
+        origin: '*',
         methods: ['GET', 'POST'],
         allowedHeaders: ['Content-Type', 'Authorization']
     },
-    path: "/my-custom-path/"
 })
 
 app.get('/', (req, res) => {
