@@ -1,20 +1,29 @@
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
+const socketIo = require ('socket.io');
 const PORT = 3000;
+
+const allowedOrigins = ['https://chat-websocket-angular.vercel.app', 'http://localhost:4200'];
 
 const app = express();
 const server = http.createServer(app);
-const { Server } = require ('socket.io');
 
-const io = new Server(server, {
+app.use(
+    cors({
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true,
+    })
+);
+
+const io = socketIo(server, {
     cors: { 
-        origin: '*',
-        methods: ['GET', 'POST']
+        origin: allowedOrigins,
+        methods: ['GET', 'POST'],
+        credentials: true,
     },
 })
-
-app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Servidor funcionando!');
