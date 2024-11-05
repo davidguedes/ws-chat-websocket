@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
         console.log('Novo cliente: ', name);
 
         // Broadcast do novo usuário para todos os clientes conectados
-        io.emmit('new_user_name', {user: name});
+        io.emit('new_user_name', {user: name});
     });
 
     // Troca de mensagens para um cliente em especifico
