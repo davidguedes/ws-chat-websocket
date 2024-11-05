@@ -24,6 +24,7 @@ const io = socketIo(server, {
         allowedHeaders: ['Access-Control-Allow-Origin'],
         credentials: true,
     },
+    transports: ['websocket'],
 })
 
 app.get('/', (req, res) => {
