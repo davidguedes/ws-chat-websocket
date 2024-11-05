@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const http = require('http');
 const socketIo = require ('socket.io');
 const PORT = 3000;
@@ -9,14 +8,6 @@ const allowedOrigins = ['https://chat-websocket-angular.vercel.app', 'http://loc
 const app = express();
 const server = http.createServer(app);
 
-/*app.use(
-    cors({
-        origin: allowedOrigins,
-        methods: ['GET', 'POST'],
-        credentials: true,
-    })
-);*/
-
 const io = socketIo(server, {
     cors: { 
         origin: allowedOrigins,
@@ -24,7 +15,6 @@ const io = socketIo(server, {
         allowedHeaders: ['Access-Control-Allow-Origin'],
         credentials: true,
     },
-    transports: ['websocket'],
 })
 
 app.get('/', (req, res) => {
