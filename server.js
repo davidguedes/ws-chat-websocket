@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
-const { Server } = require('socket.io');
 const PORT = 3000;
 
 const app = express();
@@ -13,7 +12,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
  }));
 
-const io = new Server(server, {
+const io = require('socket.io')(server, {
     cors: { 
         origin: '*',
         methods: ['GET', 'POST']
