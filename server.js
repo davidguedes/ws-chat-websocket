@@ -8,14 +8,14 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(cors({ 
-    origin: 'https://chat-websocket-angular.vercel.app',
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
  }));
 
 const io = new Server(server, {
     cors: { 
-        origin: 'https://chat-websocket-angular.vercel.app',
+        origin: '*',
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization']
     }
